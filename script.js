@@ -21,5 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleBtn.addEventListener("click", () => {
     sidebar.classList.toggle("show");
   });
+  <script>
+  document.getElementById("upiBtn").addEventListener("click", function () {
+    const name = document.getElementById("name").value || "Supporter";
+    const amount = document.getElementById("amount").value || 100;
+
+    const upiLink = `upi://pay?pa=8434277980@kotak811&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+    window.location.href = upiLink;
+  });
+</script>
+
 });
 
