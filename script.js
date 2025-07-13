@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      const upiURL = `upi://pay?pa=8434277980@kotak811&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+      const upiURL = `upi://pay?pa=6200480998@ybl&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
       window.location.href = upiURL;
     });
   }
