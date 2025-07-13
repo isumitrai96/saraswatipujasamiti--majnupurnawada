@@ -21,18 +21,36 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleBtn.addEventListener("click", () => {
     sidebar.classList.toggle("show");
   });
- <script>
-  document.getElementById("upiBtn").addEventListener("click", function () {
-    const name = document.getElementById("name").value.trim() || "Supporter";
-    const amount = parseFloat(document.getElementById("amount").value);
+document.addEventListener("DOMContentLoaded", function () {
+  const nameInput = document.getElementById("name");
+  const amountInput = document.getElementById("amount");
+  const upiBtn = document.getElementById("upiBtn");
+
+  upiBtn.addEventListener("click", function (e) {
+    e.preventDefault(); // Stop default anchor click
+
+    const name = nameInput.value.trim() || "Supporter";
+    const amount = parseFloat(amountInput.value);
 
     if (!amount || amount <= 0) {
       alert("कृपया एक सही राशि दर्ज करें (₹1 या उससे अधिक)");
       return;
     }
 
-    const upiLink = `upi://pay?pa=8434277980@kotak811&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
-    window.location.href = upiLink;
+    const upiURL = `upi://pay?pa=8434277980@kotak811&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+
+    // Redirect to UPI payment link
+    window.location.href = upiURL;
   });
-</script>
+
+  // Optional: Show/hide button dynamically
+  amountInput.addEventListener("input", () => {
+    const amount = parseFloat(amountInput.value);
+    if (amount > 0) {
+      upiBtn.style.display = "inline-block";
+    } else {
+      upiBtn.style.display = "none";
+    }
+  });
+});
 
