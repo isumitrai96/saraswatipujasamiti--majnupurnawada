@@ -1,43 +1,35 @@
-const nameInput = document.getElementById("name");
-const amountInput = document.getElementById("amount");
-const upiLink = document.getElementById("upiLink");
-
-amountInput.addEventListener("input", () => {
-  const name = nameInput.value.trim() || "Sumit Roy";
-  const amount = amountInput.value;
-
-  if (amount > 0) {
-    const upiURL = `upi://pay?pa=skroy131102@ybl&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
-    upiLink.href = upiURL;
-    upiLink.style.display = "inline-block";
-  } else {
-    upiLink.style.display = "none";
-  }
-});
 document.addEventListener("DOMContentLoaded", function () {
+  // Sidebar Toggle
   const toggleBtn = document.getElementById("toggleBtn");
   const sidebar = document.getElementById("sidebar");
 
-  toggleBtn.addEventListener("click", () => {
-    sidebar.classList.toggle("show");
-  });
-document.addEventListener("DOMContentLoaded", function () {
-  const upiBtn = document.getElementById("upiBtn");
+  if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("show");
+    });
+  }
+
+  // UPI Dynamic Redirect
   const nameInput = document.getElementById("name");
   const amountInput = document.getElementById("amount");
+  const upiBtn = document.getElementById("upiBtn");
 
-  upiBtn.addEventListener("click", function (e) {
-    e.preventDefault();
+  if (upiBtn && nameInput && amountInput) {
+    upiBtn.addEventListener("click", function (e) {
+      e.preventDefault();
 
-    const name = nameInput.value.trim() || "Supporter";
-    const amount = parseFloat(amountInput.value);
+      const name = nameInput.value.trim() || "Supporter";
+      const amount = parseFloat(amountInput.value);
 
-    if (!amount || amount <= 0) {
-      alert("कृपया ₹1 या उससे अधिक राशि दर्ज करें।");
-      return;
-    }
+      if (!amount || amount <= 0) {
+        alert("कृपया ₹1 या उससे अधिक राशि दर्ज करें।");
+        return;
+      }
 
-    const upiURL = `upi://pay?pa=8434277980@kotak811&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
-    window.location.href = upiURL;
-  });
+      const upiURL = `upi://pay?pa=8434277980@kotak811&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
+      window.location.href = upiURL;
+    });
+  }
 });
+
+  
