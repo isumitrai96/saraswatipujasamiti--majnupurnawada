@@ -21,15 +21,18 @@ document.addEventListener("DOMContentLoaded", function () {
   toggleBtn.addEventListener("click", () => {
     sidebar.classList.toggle("show");
   });
-  <script>
+ <script>
   document.getElementById("upiBtn").addEventListener("click", function () {
-    const name = document.getElementById("name").value || "Supporter";
-    const amount = document.getElementById("amount").value || 100;
+    const name = document.getElementById("name").value.trim() || "Supporter";
+    const amount = parseFloat(document.getElementById("amount").value);
+
+    if (!amount || amount <= 0) {
+      alert("कृपया एक सही राशि दर्ज करें (₹1 या उससे अधिक)");
+      return;
+    }
 
     const upiLink = `upi://pay?pa=8434277980@kotak811&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR`;
     window.location.href = upiLink;
   });
 </script>
-
-});
 
